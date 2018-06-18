@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
 class CartItem extends Component {
+    subTotal = (price , amount) => {
+        return price * amount;
+    }
     render() {
         var {cartItem} = this.props;
         return (
+            
             <tr>
             <th scope="row">
                 <img src={cartItem.product.img}
@@ -28,7 +32,7 @@ class CartItem extends Component {
                     </label>
                 </div>
             </td>
-            <td>{cartItem.product.price * cartItem.amount}$</td>
+            <td>{this.subTotal(cartItem.product.price,cartItem.amount)}$</td>
             <td>
                 <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top"
                     title="" data-original-title="Remove item">
@@ -38,6 +42,10 @@ class CartItem extends Component {
         </tr>
         );
     }
+    
+    
 }
+
+
 
 export default CartItem;

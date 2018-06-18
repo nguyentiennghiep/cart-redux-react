@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class CartResult extends Component {
     render() {
+        var {cart} = this.props;
         return (
             <tr>
             <td colSpan="3"></td>
@@ -12,7 +13,7 @@ class CartResult extends Component {
             </td>
             <td>
                 <h4>
-                    <strong>15$</strong>
+                    <strong>{this.subTotal(cart)}$</strong>
                 </h4>
             </td>
             <td colSpan="3">
@@ -22,6 +23,14 @@ class CartResult extends Component {
             </td>
         </tr>
         );
+    }
+    subTotal =(cart) =>
+    {
+        var total = 0;
+        cart.forEach(item => {
+            total = total + item.product.price * item.amount
+        });
+        return total;
     }
 }
 

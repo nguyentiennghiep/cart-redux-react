@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
+import CartResult from '../components/CartResult';
 
 class CartContainer extends Component {
     render() {
@@ -11,6 +12,7 @@ class CartContainer extends Component {
         return (
             <Cart>
                 {this.showCartItem(cart)}
+                {this.subTotal(cart)}
             </Cart>
         );
     }
@@ -24,6 +26,15 @@ class CartContainer extends Component {
             })
         }
         return result;
+    }
+
+    subTotal = (cart) =>{
+        var result = 0;
+        if(cart.length > 0)
+        {
+            result =<CartResult cart = {cart} />;
+        }
+        return result
     }
 }
 
