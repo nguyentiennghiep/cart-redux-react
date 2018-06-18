@@ -7,7 +7,7 @@ class CartResult extends Component {
             <td colSpan="3"></td>
             <td>
                 <h4>
-                    <strong>Tổng Tiền</strong>
+                    <strong>Sum Price</strong>
                 </h4>
             </td>
             <td>
