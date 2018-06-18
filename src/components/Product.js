@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import * as actions from './../actions/ActionTypes'
+import * as message from './../constants/messages'
 
 class Product extends Component {
     showRate  = ( rates) =>{
@@ -15,8 +15,16 @@ class Product extends Component {
        }
        return result;
     }
+
+    onAddToCart = () =>{
+        this.props.onAddToCart(this.props.product);
+        this.props.onChangeMess(message.MSG_ADD_TO_CART_SUCCESS);
+    }
+    
+
     render() {
         var {product} = this.props;
+    
         return (
             <div className="col-lg-4 col-md-6 mb-r">
                 <div className="card text-center card-cascade narrower">
@@ -42,7 +50,9 @@ class Product extends Component {
                         <div className="card-footer">
                             <span className="left">{product.price}$</span>
                             <span className="right">
-                                <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
+                                <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"
+                                onClick = {this.onAddToCart}
+                                >
                                     <i className="fa fa-shopping-cart"></i>
                                 </a>
                             </span>
@@ -53,6 +63,7 @@ class Product extends Component {
         );
     }
 }
+
 
 const mapStatetoProps = state => {
     return ({

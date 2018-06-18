@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
+import * as message from './../constants/messages';
 
 class CartContainer extends Component {
     render() {
         var { cart } = this.props;
-        console.log(cart);
         return (
             <Cart>
                 {this.showCartItem(cart)}
@@ -18,7 +18,7 @@ class CartContainer extends Component {
     }
 
     showCartItem = (cart) =>{
-        var result = '';
+        var result = "" ;
         if(cart)
         {
             result = cart.map((item,index)=>{
@@ -29,7 +29,7 @@ class CartContainer extends Component {
     }
 
     subTotal = (cart) =>{
-        var result = 0;
+        var result = <tr><td>{message.MSG_NO_CART}</td></tr>;
         if(cart.length > 0)
         {
             result =<CartResult cart = {cart} />;

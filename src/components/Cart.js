@@ -4,24 +4,24 @@ class Cart extends Component {
     render() {
         return (
             <section className="section">
-            <div className="table-responsive">
-                <table className="table product-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Sum</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.children}
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                <div className="table-responsive">
+                    <table className="table product-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Sum</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.children}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         );
     }
 }

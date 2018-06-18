@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Products from '../components/Products';
 import Product from '../components/Product';
 import PropTypes from 'prop-types';
+import * as actions from './../actions/index'
 
 class ProductsContainer extends Component {
 
@@ -10,11 +11,14 @@ class ProductsContainer extends Component {
         var result = '';
         if (products.length > 0) {
             result = products.map((product, index) => {
-                return <Product key={index} product={product}></Product>
+                return <Product key={index} product={product} 
+                onAddToCart = {this.props.onAddToCart}
+                onChangeMess = {this.props.onChangeMess}></Product>
             })
         }
         return result;
     }
+
     render() {
         var { products } = this.props;
         return (
@@ -46,7 +50,12 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return ({
-
+        onAddToCart : (product) =>{
+            dispatch(actions.actAddToCart(product,1))
+        },
+        onChangeMess : (mess) =>{
+            dispatch(actions.changeMess(mess))
+        }
     });
 }
 
