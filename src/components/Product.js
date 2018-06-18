@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+//import * as actions from './../actions/ActionTypes'
 
 class Product extends Component {
+    showRate  = ( rates) =>{
+       var result = [];
+       for(var i = 1; i<= rates ; i++)
+       {
+           result.push(<i className = "fa fa-star"></i>);
+       }
+       for(var j = 1; j<= 5-rates ; j++)
+       {
+           result.push(<i className = "fa fa-star-o"></i>);
+       }
+       return result;
+    }
     render() {
         return (
             <div className="col-lg-4 col-md-6 mb-r">
                 <div className="card text-center card-cascade narrower">
                     <div className="view overlay hm-white-slight z-depth-1">
-                        <img src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72"
+                        <img src={this.props.img}
                             className="img-fluid" alt="" />
                         <a>
                             <div className="mask waves-light waves-effect waves-light"></div>
@@ -15,31 +29,17 @@ class Product extends Component {
                     <div className="card-body">
                         <h4 className="card-title">
                             <strong>
-                                <a>Iphone 6 Plus</a>
+                                <a>{this.props.name}</a>
                             </strong>
                         </h4>
                         <ul className="rating">
-                            <li>
-                                <i className="fa fa-star"></i>
-                            </li>
-                            <li>
-                                <i className="fa fa-star"></i>
-                            </li>
-                            <li>
-                                <i className="fa fa-star"></i>
-                            </li>
-                            <li>
-                                <i className="fa fa-star"></i>
-                            </li>
-                            <li>
-                                <i className="fa fa-star"></i>
-                            </li>
+                            <li>{this.showRate(this.props.rates)}</li>
                         </ul>
                         <p className="card-text">
-                            Sản phẩm do apply sản xuất
-                                    </p>
+                            {this.props.desc}
+                        </p>
                         <div className="card-footer">
-                            <span className="left">15$</span>
+                            <span className="left">{this.props.price}$</span>
                             <span className="right">
                                 <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
                                     <i className="fa fa-shopping-cart"></i>
@@ -53,4 +53,16 @@ class Product extends Component {
     }
 }
 
-export default Product;
+const mapStatetoProps = state => {
+    return ({
+        products: state.products
+    });
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return ({
+
+    });
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Product);
