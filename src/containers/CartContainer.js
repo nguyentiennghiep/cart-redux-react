@@ -5,6 +5,7 @@ import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
 import * as message from './../constants/messages';
+import * as actions from './../actions/index'
 
 class CartContainer extends Component {
     render() {
@@ -22,7 +23,10 @@ class CartContainer extends Component {
         if(cart)
         {
             result = cart.map((item,index)=>{
-               return  <CartItem key = {index} cartItem = {item} />
+               return  <CartItem key = {index} cartItem = {item} onDelete = {this.props.onDelete}
+               onChangeMess = {this.props.onChangeMess}
+               minusProduct = {this.props.minusProduct}
+               plusProduct = {this.props.plusProduct} />
             })
         }
         return result;
@@ -63,7 +67,19 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return ({
-
+        onDelete : (product) =>{
+            dispatch(actions.deleteCart(product))
+        }
+        ,
+        onChangeMess: (mess) => {
+            dispatch(actions.changeMess(mess))
+        },
+        minusProduct : (product) =>{
+            dispatch(actions.minusProduct(product))
+        },
+        plusProduct : (product) =>{
+            dispatch(actions.plusProduct(product))
+        }
     });
 }
 

@@ -14,3 +14,25 @@ export const changeMess = (mess) =>{
         mess
     }
 }
+
+export const deleteCart = (product) =>{
+    return {
+        type : types.DELETE_CART,
+        product
+    }
+}
+
+export const minusProduct = (product) =>{
+    return {
+        type : types.MINUS_PRODUCT,
+        product
+    }
+}
+
+
+export const plusProduct = (product) =>{
+    return {
+        type : types.PLUS_PRODUCT,
+        product
+    }
+}
